@@ -19,15 +19,30 @@
         <div id="loading">Loading Mind Map Creator...</div>
     </div>
 
-    <!-- Load your component definition first -->
-    <script type="text/babel" data-presets="react" src="mindmap.js"></script>
+    <!-- Define Icons first -->
+    <script type="text/babel">
+        const Icons = {
+            Plus: () => <i className="fas fa-plus"></i>,
+            ArrowUpCircle: () => <i className="fas fa-arrow-circle-up"></i>,
+            ZoomIn: () => <i className="fas fa-search-plus"></i>,
+            ZoomOut: () => <i className="fas fa-search-minus"></i>,
+            Download: () => <i className="fas fa-download"></i>,
+            Sun: () => <i className="fas fa-sun"></i>,
+            Moon: () => <i className="fas fa-moon"></i>,
+            Edit2: () => <i className="fas fa-edit"></i>,
+            Trash2: () => <i className="fas fa-trash"></i>,
+            Check: () => <i className="fas fa-check"></i>
+        };
+    </script>
+
+    <!-- Load your component -->
+    <script type="text/babel" src="mindmap.js"></script>
 
     <!-- Initialize the app -->
     <script type="text/babel">
-        // Wait for everything to load
         window.addEventListener('DOMContentLoaded', () => {
             const root = ReactDOM.createRoot(document.getElementById('root'));
-            root.render(React.createElement(MindMapCreator));
+            root.render(<MindMapCreator />);
         });
     </script>
 </body>
