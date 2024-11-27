@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mind Map Creator</title>
     <!-- React -->
-    <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js" crossorigin></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <!-- Babel -->
     <script src="https://unpkg.com/@babel/standalone@7.22.10/babel.min.js"></script>
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@0.263.1/dist/umd/lucide.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons (using this instead of Lucide) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-gray-100 min-h-screen p-4">
     <div id="root">
         <div id="loading" class="text-center p-4">Loading Mind Map Creator...</div>
     </div>
-    <script type="text/babel" data-type="module" src="mindmap.js"></script>
+    <script type="text/babel" src="mindmap.js"></script>
 </body>
 </html>
