@@ -5,19 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mind Map Creator</title>
     <!-- React -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react@18.2.0/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
     <!-- Babel -->
     <script src="https://unpkg.com/@babel/standalone@7.22.10/babel.min.js"></script>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome for Icons (using this instead of Lucide) -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        // Initialize tailwind configuration
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {}
+            }
+        }
+    </script>
 </head>
-<body class="bg-gray-100 min-h-screen p-4">
-    <div id="root">
-        <div id="loading" class="text-center p-4">Loading Mind Map Creator...</div>
-    </div>
+<body>
+    <div id="root"></div>
+
+    <!-- Load your React component -->
+    <script type="text/babel">
+        // Define icons using Font Awesome
+        const Icons = {
+            Plus: () => <i className="fas fa-plus"></i>,
+            ArrowUpCircle: () => <i className="fas fa-arrow-circle-up"></i>,
+            ZoomIn: () => <i className="fas fa-search-plus"></i>,
+            ZoomOut: () => <i className="fas fa-search-minus"></i>,
+            Download: () => <i className="fas fa-download"></i>,
+            Sun: () => <i className="fas fa-sun"></i>,
+            Moon: () => <i className="fas fa-moon"></i>,
+            Edit2: () => <i className="fas fa-edit"></i>,
+            Trash2: () => <i className="fas fa-trash"></i>,
+            Check: () => <i className="fas fa-check"></i>
+        };
+
+        // Import your main component
+        const { MindMapCreator } = window;
+
+        // Render when the DOM is ready
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<MindMapCreator />);
+    </script>
+
+    <!-- Load your component definition -->
     <script type="text/babel" src="mindmap.js"></script>
 </body>
 </html>
