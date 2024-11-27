@@ -1,17 +1,3 @@
-// Define icons using Font Awesome
-const Icons = {
-  Plus: () => <i className="fas fa-plus"></i>,
-  ArrowUpCircle: () => <i className="fas fa-arrow-circle-up"></i>,
-  ZoomIn: () => <i className="fas fa-search-plus"></i>,
-  ZoomOut: () => <i className="fas fa-search-minus"></i>,
-  Download: () => <i className="fas fa-download"></i>,
-  Sun: () => <i className="fas fa-sun"></i>,
-  Moon: () => <i className="fas fa-moon"></i>,
-  Edit2: () => <i className="fas fa-edit"></i>,
-  Trash2: () => <i className="fas fa-trash"></i>,
-  Check: () => <i className="fas fa-check"></i>
-};
-
 // Create the main component
 const MindMapCreator = () => {
   const [nodes, setNodes] = React.useState([
@@ -333,20 +319,4 @@ const MindMapCreator = () => {
     </div>
   );
 };
-
-// Wait for DOM to load before rendering
-window.addEventListener('DOMContentLoaded', () => {
-  try {
-    const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(<MindMapCreator />);
-    // Initialize icons after render
-    window.lucide.createIcons();
-  } catch (error) {
-    console.error('Error rendering app:', error);
-    document.getElementById('root').innerHTML = `
-      <div class="p-4 text-red-500">
-        Error loading Mind Map Creator: ${error.message}
-      </div>
-    `;
-  }
-});
+window.MindMapCreator = MindMapCreator;
