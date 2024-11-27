@@ -154,14 +154,22 @@ const MindMapCreator = () => {
           type="text"
           value={newNodeText}
           onChange={(e) => setNewNodeText(e.target.value)}
-          placeholder={`Add branch to "${nodes.find(n => n.id === selectedParentId)?.text}"...`}
+          placeholder={`Add branch to "${nodes.find(n => n.id === selectedParentId)?.text}"`}
           className={`flex-grow p-2 rounded border ${isDarkMode ? 'bg-slate-700 text-white border-slate-600' : 'border-slate-300'}`}
         />
-        <button onClick={addNode} className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+        <button 
+          onClick={addNode} 
+          className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        >
           <lucide.Plus size={16} /> Add
         </button>
         {selectedParentId !== 1 && (
-          <button onClick={returnToRoot} className={`flex items-center gap-2 px-4 py-2 rounded border ${isDarkMode ? 'bg-slate-700 border-slate-600 text-white' : 'border-slate-300'}`}>
+          <button 
+            onClick={returnToRoot} 
+            className={`flex items-center gap-2 px-4 py-2 rounded border ${
+              isDarkMode ? 'bg-slate-700 border-slate-600 text-white' : 'border-slate-300'
+            }`}
+          >
             <lucide.ArrowUpCircle size={16} /> Return to Root
           </button>
         )}
@@ -320,6 +328,17 @@ const MindMapCreator = () => {
   );
 };
 
-// Render the app
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<MindMapCreator />);
+// Wait for DOM to load before rendering
+window.addEventListener('DOMContentLoaded', () => {
+  try {
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<MindMapCreator />);
+  } catch (error) {
+    console.error('Error rendering app:', error);
+    document.getElementById('root').innerHTML = `
+      <div class="p-4 text-red-500">
+        Error loading Mind Map Creator: ${error.message}
+      </div>
+    `;
+  }
+});
