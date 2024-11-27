@@ -319,4 +319,3 @@ const MindMapCreator = () => {
     </div>
   );
 };
-window.MindMapCreator = MindMapCreator;
