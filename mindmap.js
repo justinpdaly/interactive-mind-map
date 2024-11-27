@@ -1,3 +1,37 @@
+// Define icons
+const Icons = {
+  Plus: (props) => (
+    <i data-lucide="plus" {...props}></i>
+  ),
+  ArrowUpCircle: (props) => (
+    <i data-lucide="arrow-up-circle" {...props}></i>
+  ),
+  ZoomIn: (props) => (
+    <i data-lucide="zoom-in" {...props}></i>
+  ),
+  ZoomOut: (props) => (
+    <i data-lucide="zoom-out" {...props}></i>
+  ),
+  Download: (props) => (
+    <i data-lucide="download" {...props}></i>
+  ),
+  Sun: (props) => (
+    <i data-lucide="sun" {...props}></i>
+  ),
+  Moon: (props) => (
+    <i data-lucide="moon" {...props}></i>
+  ),
+  Edit2: (props) => (
+    <i data-lucide="edit-2" {...props}></i>
+  ),
+  Trash2: (props) => (
+    <i data-lucide="trash-2" {...props}></i>
+  ),
+  Check: (props) => (
+    <i data-lucide="check" {...props}></i>
+  )
+};
+
 // Create the main component
 const MindMapCreator = () => {
   const [nodes, setNodes] = React.useState([
@@ -15,6 +49,11 @@ const MindMapCreator = () => {
   const [selectedParentId, setSelectedParentId] = React.useState(1);
   const svgRef = React.useRef(null);
   const containerRef = React.useRef(null);
+
+  React.useEffect(() => {
+    // Reinitialize Lucide icons after any state changes that might add new icons
+    window.lucide.createIcons();
+  });
 
   const calculateNewPosition = (parentNode) => {
     const childConnections = connections.filter(conn => conn.from === parentNode.id);
@@ -161,7 +200,7 @@ const MindMapCreator = () => {
           onClick={addNode} 
           className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
         >
-          <lucide.Plus size={16} /> Add
+          <Icons.Plus className="w-4 h-4" /> Add
         </button>
         {selectedParentId !== 1 && (
           <button 
@@ -170,23 +209,23 @@ const MindMapCreator = () => {
               isDarkMode ? 'bg-slate-700 border-slate-600 text-white' : 'border-slate-300'
             }`}
           >
-            <lucide.ArrowUpCircle size={16} /> Return to Root
+            <Icons.ArrowUpCircle className="w-4 h-4" /> Return to Root
           </button>
         )}
         <button onClick={handleZoomIn} className={`p-2 rounded border ${isDarkMode ? 'bg-slate-700 border-slate-600 text-white' : 'border-slate-300'}`}>
-          <lucide.ZoomIn size={16} />
+          <Icons.ZoomIn className="w-4 h-4" />
         </button>
         <button onClick={handleZoomOut} className={`p-2 rounded border ${isDarkMode ? 'bg-slate-700 border-slate-600 text-white' : 'border-slate-300'}`}>
-          <lucide.ZoomOut size={16} />
+          <Icons.ZoomOut className="w-4 h-4" />
         </button>
         <button onClick={exportToSVG} className={`p-2 rounded border ${isDarkMode ? 'bg-slate-700 border-slate-600 text-white' : 'border-slate-300'}`}>
-          <lucide.Download size={16} />
+          <Icons.Download className="w-4 h-4" />
         </button>
         <button 
           onClick={toggleDarkMode} 
           className={`p-2 rounded border ${isDarkMode ? 'bg-slate-700 border-slate-600 text-white' : 'border-slate-300'}`}
         >
-          {isDarkMode ? <lucide.Sun size={16} /> : <lucide.Moon size={16} />}
+          {isDarkMode ? <Icons.Sun className="w-4 h-4" /> : <Icons.Moon className="w-4 h-4" />}
         </button>
       </div>
       
@@ -267,7 +306,7 @@ const MindMapCreator = () => {
                       className="h-6 w-6 flex items-center justify-center bg-green-500 text-white rounded"
                       onClick={(e) => saveEdit(e)}
                     >
-                      <lucide.Check size={12} />
+                      <Icons.Check className="w-3 h-3" />
                     </button>
                   </div>
                 </foreignObject>
@@ -293,11 +332,7 @@ const MindMapCreator = () => {
                           onClick={(e) => startEditing(node, e)}
                         />
                         <g transform="translate(-6, -6)">
-                          <lucide.Edit2
-                            className={`cursor-pointer ${isDarkMode ? 'text-slate-200' : 'text-slate-600'}`}
-                            onClick={(e) => startEditing(node, e)}
-                            size={12}
-                          />
+                          <Icons.Edit2 className="w-3 h-3" />
                         </g>
                       </g>
 
@@ -309,11 +344,7 @@ const MindMapCreator = () => {
                           onClick={(e) => deleteNode(node.id, e)}
                         />
                         <g transform="translate(-6, -6)">
-                          <lucide.Trash2
-                            className={`cursor-pointer ${isDarkMode ? 'text-slate-200' : 'text-slate-600'}`}
-                            onClick={(e) => deleteNode(node.id, e)}
-                            size={12}
-                          />
+                          <Icons.Trash2 className="w-3 h-3" />
                         </g>
                       </g>
                     </g>
@@ -333,6 +364,8 @@ window.addEventListener('DOMContentLoaded', () => {
   try {
     const root = ReactDOM.createRoot(document.getElementById('root'));
     root.render(<MindMapCreator />);
+    // Initialize icons after render
+    window.lucide.createIcons();
   } catch (error) {
     console.error('Error rendering app:', error);
     document.getElementById('root').innerHTML = `
