@@ -1,35 +1,15 @@
-// Define icons
+// Define icons using Font Awesome
 const Icons = {
-  Plus: (props) => (
-    <i data-lucide="plus" {...props}></i>
-  ),
-  ArrowUpCircle: (props) => (
-    <i data-lucide="arrow-up-circle" {...props}></i>
-  ),
-  ZoomIn: (props) => (
-    <i data-lucide="zoom-in" {...props}></i>
-  ),
-  ZoomOut: (props) => (
-    <i data-lucide="zoom-out" {...props}></i>
-  ),
-  Download: (props) => (
-    <i data-lucide="download" {...props}></i>
-  ),
-  Sun: (props) => (
-    <i data-lucide="sun" {...props}></i>
-  ),
-  Moon: (props) => (
-    <i data-lucide="moon" {...props}></i>
-  ),
-  Edit2: (props) => (
-    <i data-lucide="edit-2" {...props}></i>
-  ),
-  Trash2: (props) => (
-    <i data-lucide="trash-2" {...props}></i>
-  ),
-  Check: (props) => (
-    <i data-lucide="check" {...props}></i>
-  )
+  Plus: () => <i className="fas fa-plus"></i>,
+  ArrowUpCircle: () => <i className="fas fa-arrow-circle-up"></i>,
+  ZoomIn: () => <i className="fas fa-search-plus"></i>,
+  ZoomOut: () => <i className="fas fa-search-minus"></i>,
+  Download: () => <i className="fas fa-download"></i>,
+  Sun: () => <i className="fas fa-sun"></i>,
+  Moon: () => <i className="fas fa-moon"></i>,
+  Edit2: () => <i className="fas fa-edit"></i>,
+  Trash2: () => <i className="fas fa-trash"></i>,
+  Check: () => <i className="fas fa-check"></i>
 };
 
 // Create the main component
@@ -49,11 +29,6 @@ const MindMapCreator = () => {
   const [selectedParentId, setSelectedParentId] = React.useState(1);
   const svgRef = React.useRef(null);
   const containerRef = React.useRef(null);
-
-  React.useEffect(() => {
-    // Reinitialize Lucide icons after any state changes that might add new icons
-    window.lucide.createIcons();
-  });
 
   const calculateNewPosition = (parentNode) => {
     const childConnections = connections.filter(conn => conn.from === parentNode.id);
